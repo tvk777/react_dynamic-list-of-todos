@@ -10,25 +10,26 @@ interface Props {
 }
 
 export const TodoModal: React.FC<Props> = ({ todo, onCancel }) => {
-  const [user, setUser] = useState<User>();
+  const [user, setUser] = useState<User | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
 
   useEffect(() => {
+    setUser(null);
     setErrorMessage('');
     setIsLoading(true);
     getUser(todo.userId)
       .then(data => {
         setUser(data);
       })
-      .catch(() => setErrorMessage('Failed to fetch Todos'))
+      .catch(() => setErrorMessage('Failed to fetch User'))
       .finally(() => setIsLoading(false));
-  }, [todo]);
+  }, [todo.userId]);
 
   return (
     <div className="modal is-active" data-cy="modal">
       <div className="modal-background" />
-      {errorMessage}
+      <div data-cy="error">{errorMessage}</div>
 
       {isLoading ? (
         <Loader />

@@ -48,12 +48,17 @@ export const TodoList: React.FC<Props> = ({
             </p>
           </td>
           <td className="has-text-right is-vcentered">
-            <button data-cy="selectButton" className="button" type="button">
+            <button
+              data-cy="selectButton"
+              className="button"
+              type="button"
+              onClick={() => onSelect(todo.id)}
+            >
               <span className="icon">
                 {todo.id === selectedTodoId ? (
                   <i className="far fa-eye-slash" />
                 ) : (
-                  <i className="far fa-eye" onClick={() => onSelect(todo.id)} />
+                  <i className="far fa-eye" />
                 )}
               </span>
             </button>

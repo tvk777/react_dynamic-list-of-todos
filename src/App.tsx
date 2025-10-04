@@ -76,7 +76,7 @@ export const App: React.FC = () => {
             </div>
 
             <div className="block">
-              {errorMessage}
+              <div data-cy="error">{errorMessage}</div>
               {isLoading && <Loader />}
               {!errorMessage && !isLoading && (
                 <TodoList
